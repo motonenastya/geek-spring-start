@@ -34,7 +34,7 @@ public class ProductRepository {
         return products;
     }
 
-    public Product show(Long id){
+    public Product findById(Long id){
 //            return products.get(id.intValue() - products.size() - 1);
         return products.stream().filter(product -> product.getId() == id).findAny().orElse(null);
 //        так мы в одну строчку находим товар по id, а если такого товара нет - возвращаем null

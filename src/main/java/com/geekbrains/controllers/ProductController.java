@@ -30,8 +30,8 @@ public class ProductController {
 
 
     @GetMapping("/{id}")
-    public String show(@PathVariable("id") Long id, Model model){
-        model.addAttribute("product",productRepository.show(id));
+    public String findById(@PathVariable("id") Long id, Model model){
+        model.addAttribute("product",productService.findById(id));
 //        Получим один продукт по его id из DAO и передадим на отображение в представление
         return "show";
     }
