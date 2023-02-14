@@ -27,7 +27,6 @@ public class ProductRepository {
 //    }
 
     public List<Product> getAllProducts(){
-//       products = thisSession.createQuery("from Product").getResultList();
         thisSession = factory.getCurrentSession();
         thisSession.beginTransaction();
         products = thisSession.createQuery("from Product").getResultList();
@@ -50,9 +49,13 @@ public class ProductRepository {
             thisSession.getTransaction().commit();
     }
 
-    public void delete(Long id) {
-        thisSession.createQuery("delete from Product where id = " + id.intValue()).executeUpdate();
+    public void deleteById(Long id) {
+        thisSession = factory.getCurrentSession();
+        thisSession.beginTransaction();
+
         products.removeIf(p -> Objects.equals(p.getId(), id));
+
+        thisSession.createQuery("delete from Product where id = " + id.intValue()).executeUpdate();
         thisSession.getTransaction().commit();
     }
 }
