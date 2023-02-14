@@ -14,7 +14,6 @@ import java.util.Objects;
 @Repository
 public class ProductRepository {
     public List<Product> products = new ArrayList<>();
-//    public static Session thisSession = null;
 
     public static Session thisSession;
 
@@ -22,11 +21,7 @@ public class ProductRepository {
     @Qualifier("factory")
     SessionFactory factory;
 
-//    public static void getSession(Session session){
-//        thisSession = session;
-//    }
-
-    public List<Product> getAllProducts(){
+    public List<Product> getAll(){
         thisSession = factory.getCurrentSession();
         thisSession.beginTransaction();
         products = thisSession.createQuery("from Product").getResultList();
@@ -34,27 +29,22 @@ public class ProductRepository {
     }
 
     public Product findById(Long id){
-//            return products.get(id.intValue() - products.size() - 1);
         return products.stream().filter(product -> product.getId() == id).findAny().orElse(null);
 //        так мы в одну строчку находим товар по id, а если такого товара нет - возвращаем null
     }
 
-    public void createNewProduct(Product product){
+    public void create(Product product){
         thisSession = factory.getCurrentSession();
         thisSession.beginTransaction();
-
         products.add(product);
-
-            thisSession.save(product);
-            thisSession.getTransaction().commit();
+        thisSession.save(product);
+        thisSession.getTransaction().commit();
     }
 
     public void deleteById(Long id) {
         thisSession = factory.getCurrentSession();
         thisSession.beginTransaction();
-
         products.removeIf(p -> Objects.equals(p.getId(), id));
-
         thisSession.createQuery("delete from Product where id = " + id.intValue()).executeUpdate();
         thisSession.getTransaction().commit();
     }

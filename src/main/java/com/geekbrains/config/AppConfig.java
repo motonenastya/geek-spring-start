@@ -38,7 +38,6 @@ public class AppConfig implements WebMvcConfigurer {
         return factory;
     }
 
-
     @Bean
     public SpringResourceTemplateResolver templateResolver() {
         SpringResourceTemplateResolver templateResolver = new
@@ -67,6 +66,4 @@ public class AppConfig implements WebMvcConfigurer {
 //ViewResolver. Вспомним: контроллер возвращает только строку имени html-страницы, а
 //DispatcherServlet обращается к данному бину, который формирует полный путь к
 //представлению, прибавляя к его имени параметры, указанные в методах setPrefix и setSuffix
-
-
 }

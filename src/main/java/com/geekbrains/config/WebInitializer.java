@@ -33,5 +33,4 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
         HiddenHttpMethodFilter httpMethodFilter = new HiddenHttpMethodFilter();
         return new Filter[]{characterEncodingFilter, httpMethodFilter};
     }
-
 }

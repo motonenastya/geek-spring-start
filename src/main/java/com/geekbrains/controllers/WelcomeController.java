@@ -12,6 +12,5 @@ public class WelcomeController {
         model.addAttribute("message", "Hello World");
         return "index";
     }
-
 //Задача контроллера будет заключаться в передаче сообщения и возврате имени представления index.html
 }
