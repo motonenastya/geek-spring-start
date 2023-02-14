@@ -1,9 +1,6 @@
 package com.geekbrains.config;
 
-import com.geekbrains.dao.ProductRepository;
 import com.geekbrains.models.Product;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

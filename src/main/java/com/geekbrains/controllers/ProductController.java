@@ -1,6 +1,5 @@
 package com.geekbrains.controllers;
 
-import com.geekbrains.dao.ProductRepository;
 import com.geekbrains.models.Product;
 import com.geekbrains.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
