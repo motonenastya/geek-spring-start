@@ -44,8 +44,8 @@ public class ProductController {
 
 
     @PostMapping
-    public String create(@ModelAttribute ("product") Product product){
-        productRepository.save(product);
+    public String createNewProduct(@ModelAttribute ("product") Product product){
+        productService.createNewProduct(product);
         return "redirect:/product";
 //        переход на другую страницу(которая указана после двоеточия)
     }

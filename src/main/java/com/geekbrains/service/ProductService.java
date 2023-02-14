@@ -23,4 +23,8 @@ public class ProductService {
     public Product findById(Long id){
         return productRepository.findById(id);
     }
+
+    public void createNewProduct(Product product){
+        productRepository.createNewProduct(product);
+    }
 }

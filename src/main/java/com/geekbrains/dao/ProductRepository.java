@@ -40,26 +40,14 @@ public class ProductRepository {
 //        так мы в одну строчку находим товар по id, а если такого товара нет - возвращаем null
     }
 
-    public void save(Product product){
+    public void createNewProduct(Product product){
         thisSession = factory.getCurrentSession();
         thisSession.beginTransaction();
 
-
         products.add(product);
-//        List list = thisSession.createQuery("from Product where id = " + product.getId().intValue()).getResultList();
-//
-//        Product newProduct = null;
-//        if (list.size() != 0){
-//            newProduct = thisSession.get(Product.class, product.getId());
-//        }else {
-//      newProduct = new Product();
-//        }
-//            Product newProduct = new Product();
-//            newProduct.setTitle(product.getTitle());
-//            newProduct.setPrice(product.getPrice());
+
             thisSession.save(product);
             thisSession.getTransaction().commit();
-//        product.setId(++PRODUCT_COUNT);
     }
 
     public void delete(Long id) {
