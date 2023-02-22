@@ -29,7 +29,13 @@ public class ProductRepository {
     }
 
     public Product findById(Long id){
-        return products.stream().filter(product -> product.getId() == id).findAny().orElse(null);
+        thisSession = factory.getCurrentSession();
+        thisSession.beginTransaction();
+        products = thisSession.createQuery("from Product where id = " + id.intValue()).getResultList();
+        for (Product product: products)
+            return product;
+        return null;
+//        return products.stream().filter(product -> product.getId() == id).findAny().orElse(null);
 //        так мы в одну строчку находим товар по id, а если такого товара нет - возвращаем null
     }
 
