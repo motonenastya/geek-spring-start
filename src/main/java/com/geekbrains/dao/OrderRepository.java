@@ -2,24 +2,33 @@ package com.geekbrains.dao;
 
 import com.geekbrains.models.Order;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class OrderRepository {
     public static List<Order> listOrder = new ArrayList<>();
-    public static Session thisSession = null;
+    public static Session thisSession;
 
-    public static void getSession(Session session){
-        thisSession = session;
-    }
+    @Autowired()
+    @Qualifier("factory")
+    SessionFactory factory;
 
-    public static List<Order> findAll(){
+    public List<Order> findAll(){
+        thisSession = factory.getCurrentSession();
+        thisSession.beginTransaction();
         listOrder = thisSession.createQuery("from Order").getResultList();
         return listOrder;
     }
 
-    public static List<Order> findById(Long buyerId){
+    public List<Order> findById(Long buyerId){
+        thisSession = factory.getCurrentSession();
+        thisSession.beginTransaction();
         listOrder = thisSession.createQuery("from Order where buyer_id = " + buyerId.intValue()).getResultList();
         return listOrder;
     }
