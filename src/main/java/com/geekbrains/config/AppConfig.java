@@ -1,5 +1,7 @@
 package com.geekbrains.config;
 
+import com.geekbrains.models.Buyer;
+import com.geekbrains.models.Order;
 import com.geekbrains.models.Product;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
@@ -34,6 +36,8 @@ public class AppConfig implements WebMvcConfigurer {
         SessionFactory factory = new org.hibernate.cfg.Configuration()
                 .configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Product.class)
+                .addAnnotatedClass(Buyer.class)
+                .addAnnotatedClass(Order.class)
                 .buildSessionFactory();
         return factory;
     }
