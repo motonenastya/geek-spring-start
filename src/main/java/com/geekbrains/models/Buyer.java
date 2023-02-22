@@ -1,5 +1,7 @@
 package com.geekbrains.models;
 
+import com.geekbrains.dao.OrderRepository;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
