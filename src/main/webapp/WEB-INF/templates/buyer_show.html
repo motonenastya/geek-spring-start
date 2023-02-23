@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Buyer_info</title>
+</head>
+<body>
+
+<p th:text="${buyer.getName()}">VALUE</p>
+<p th:text="${buyer.getId()}">VALUE</p>
+
+</div>
+
+<br/>
+<hr/>
+
+<div th:each="buyer_product : ${buyer_product}">
+    <a th:href="@{/buyer_product/{id}(id=${product.getId()})}" th:text="${product.getTitle()}">product</a>
+
+</div>
+
+<br/>
+<hr/>
+
+<div th:each="product : ${product}">
+    <a th:href="@{/product/{id}(id=${product.getId()})}" th:text="${product.getTitle()}">product</a>
+
+</div>
+
+</body>
+</html>
