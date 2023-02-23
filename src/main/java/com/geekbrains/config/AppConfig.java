@@ -1,5 +1,5 @@
 package com.geekbrains.config;
-//
+
 //import com.geekbrains.models.Order;
 import com.geekbrains.models.Buyer;
 import com.geekbrains.models.Product;
@@ -14,6 +14,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
+
+import javax.persistence.criteria.Order;
 
 @EnableWebMvc
 //включает поддержку аннотации MVC-компонентов (например, @Controller);
@@ -38,7 +40,7 @@ public class AppConfig implements WebMvcConfigurer {
                 .configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Product.class)
                 .addAnnotatedClass(Buyer.class)
-//                .addAnnotatedClass(Order.class)
+                .addAnnotatedClass(Order.class)
                 .buildSessionFactory();
 
         Session session = factory.getCurrentSession();

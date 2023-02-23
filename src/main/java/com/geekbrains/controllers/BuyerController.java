@@ -2,6 +2,7 @@ package com.geekbrains.controllers;
 
 import com.geekbrains.models.Buyer;
 import com.geekbrains.service.BuyerService;
+import com.geekbrains.service.OrderService;
 import com.geekbrains.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,12 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class BuyerController {
     private BuyerService buyerService;
     private ProductService productService;
-    private Buyer buyer;
+    private OrderService orderService;
 
     @Autowired
-    public BuyerController(BuyerService buyerService, ProductService productService) {
+    public BuyerController(BuyerService buyerService, ProductService productService, OrderService orderService) {
         this.buyerService = buyerService;
         this.productService = productService;
+        this.orderService = orderService;
     }
 
     @GetMapping()
@@ -33,7 +35,7 @@ public class BuyerController {
     @GetMapping("/{id}")
     public String findById(@PathVariable("id") Long id, Model model){
         model.addAttribute("buyer",buyerService.findById(id));
-//        model.addAttribute("buyer_product", buyer.getProducts());
+        model.addAttribute("buyer_product", productService.getAll());
         model.addAttribute("product", productService.getAll());
         return "buyer_show";
     }
