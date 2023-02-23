@@ -7,7 +7,6 @@
 <body>
 
 <div th:each="buyer : ${buyer}">
-<!--    первая это переменная временная, а вторая это составная перебираемой коллекции-->
 <a th:href="@{/buyer/{id}(id=${buyer.getId()})}" th:text="${buyer.getName()}">buyer</a>
 
 </div>

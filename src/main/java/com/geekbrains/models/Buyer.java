@@ -40,6 +40,10 @@ public class Buyer {
         return id;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public Buyer(Long id, String name) {
         this.id = id;
         this.name = name;

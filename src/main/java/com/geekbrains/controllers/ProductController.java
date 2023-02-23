@@ -1,7 +1,6 @@
 package com.geekbrains.controllers;
 
 import com.geekbrains.models.Product;
-import com.geekbrains.service.BuyerService;
 import com.geekbrains.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,17 +11,14 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/product")
 public class ProductController {
     private ProductService productService;
-    private BuyerService buyerService;
 
     @Autowired
-    public ProductController(ProductService productService, BuyerService buyerService) {
+    public ProductController(ProductService productService) {
         this.productService = productService;
-        this.buyerService = buyerService;
     }
 
     @GetMapping()
     public String getAll(Model model){
-        model.addAttribute("buyer", buyerService.getAll());
         model.addAttribute("product",productService.getAll());
         return "index";
     }
