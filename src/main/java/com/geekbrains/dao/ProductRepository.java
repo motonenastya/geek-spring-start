@@ -1,5 +1,6 @@
 package com.geekbrains.dao;
 
+import com.geekbrains.models.Order;
 import com.geekbrains.models.Product;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

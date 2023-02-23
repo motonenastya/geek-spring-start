@@ -35,7 +35,7 @@ public class BuyerController {
     @GetMapping("/{id}")
     public String findById(@PathVariable("id") Long id, Model model){
         model.addAttribute("buyer",buyerService.findById(id));
-        model.addAttribute("buyer_product", productService.getAll());
+        model.addAttribute("buyer_product", buyerService.findById(id).getProducts());
         model.addAttribute("product", productService.getAll());
         return "buyer_show";
     }

@@ -31,7 +31,7 @@ public class Buyer {
     @JoinTable(name = "orders",
             joinColumns = @JoinColumn(name = "buyer_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id"))
-    public static List<Product> products = new ArrayList<>();
+    public List<Product> products = new ArrayList<>();
 
     public Buyer() {
     }
@@ -51,18 +51,5 @@ public class Buyer {
     public List<Product> getProducts() {
         return products;
     }
-
-//    @Override
-//    public String toString() {
-//        List<Order> orders = orderService.findById(this.getId());
-//        String product = "";
-//        for (Order order:orders) {
-//            for (Product product1: products)
-//                if (order.getProduct_id() == product1.getId()){
-//                    product = product + product1.toString();
-//                }
-//        }
-//        return "Buyer [" + id + " " + name + " " + product + "]";
-//    }
 }
 

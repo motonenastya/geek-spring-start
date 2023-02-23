@@ -25,10 +25,7 @@ public class BuyerRepository {
     }
 
     public Buyer findById(Long id){
-        buyers = session.createQuery("from Buyer where id = " + id.intValue()).getResultList();
-        for (Buyer buyer: buyers)
-            return buyer;
-        return null;
+            return session.find(Buyer.class, id);
     }
 
     public void create(Buyer buyer){
