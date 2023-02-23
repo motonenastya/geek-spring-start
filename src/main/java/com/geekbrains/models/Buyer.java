@@ -1,7 +1,7 @@
 package com.geekbrains.models;
 
-import com.geekbrains.dao.OrderRepository;
-import com.geekbrains.service.OrderService;
+//import com.geekbrains.dao.OrderRepository;
+//import com.geekbrains.service.OrderService;
 import com.geekbrains.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,12 +12,12 @@ import java.util.List;
 @Entity
 @Table(name = "buyers")
 public class Buyer {
-    private OrderService orderService;
-
-    @Autowired
-    public Buyer(OrderService orderService) {
-        this.orderService = orderService;
-    }
+//    private OrderService orderService;
+//
+//    @Autowired
+//    public Buyer(OrderService orderService) {
+//        this.orderService = orderService;
+//    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,17 +48,17 @@ public class Buyer {
         return products;
     }
 
-    @Override
-    public String toString() {
-        List<Order> orders = orderService.findById(this.getId());
-        String product = "";
-        for (Order order:orders) {
-            for (Product product1: products)
-                if (order.getProduct_id() == product1.getId()){
-                    product = product + product1.toString();
-                }
-        }
-        return "Buyer [" + id + " " + name + " " + product + "]";
-    }
+//    @Override
+//    public String toString() {
+//        List<Order> orders = orderService.findById(this.getId());
+//        String product = "";
+//        for (Order order:orders) {
+//            for (Product product1: products)
+//                if (order.getProduct_id() == product1.getId()){
+//                    product = product + product1.toString();
+//                }
+//        }
+//        return "Buyer [" + id + " " + name + " " + product + "]";
+//    }
 }
 

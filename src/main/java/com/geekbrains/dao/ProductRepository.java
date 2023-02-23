@@ -18,19 +18,17 @@ public class ProductRepository {
     public static Session thisSession;
 
     @Autowired()
-    @Qualifier("factory")
-    SessionFactory factory;
+    @Qualifier("session")
+    Session session;
 
     public List<Product> getAll(){
-        thisSession = factory.getCurrentSession();
-        thisSession.beginTransaction();
+        thisSession = session;
         products = thisSession.createQuery("from Product").getResultList();
         return products;
     }
 
     public Product findById(Long id){
-        thisSession = factory.getCurrentSession();
-        thisSession.beginTransaction();
+        thisSession = session;
         products = thisSession.createQuery("from Product where id = " + id.intValue()).getResultList();
         for (Product product: products)
             return product;
@@ -40,16 +38,14 @@ public class ProductRepository {
     }
 
     public void create(Product product){
-        thisSession = factory.getCurrentSession();
-        thisSession.beginTransaction();
+        thisSession = session;
         products.add(product);
         thisSession.save(product);
         thisSession.getTransaction().commit();
     }
 
     public void deleteById(Long id) {
-        thisSession = factory.getCurrentSession();
-        thisSession.beginTransaction();
+        thisSession = session;
         products.removeIf(p -> Objects.equals(p.getId(), id));
         thisSession.createQuery("delete from Product where id = " + id.intValue()).executeUpdate();
         thisSession.getTransaction().commit();

@@ -1,8 +1,9 @@
 package com.geekbrains.config;
-
+//
+//import com.geekbrains.models.Order;
 import com.geekbrains.models.Buyer;
-import com.geekbrains.models.Order;
 import com.geekbrains.models.Product;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -31,15 +32,18 @@ public class AppConfig implements WebMvcConfigurer {
 //запросы /resources/** будет вызываться не контроллер, созданный разработчиком, а
 //возвращаться указанный в запросе файл (например, .css или .js).
 
-    @Bean("factory")
-    public SessionFactory factory(){
+    @Bean("session")
+    public Session session(){
         SessionFactory factory = new org.hibernate.cfg.Configuration()
                 .configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Product.class)
                 .addAnnotatedClass(Buyer.class)
-                .addAnnotatedClass(Order.class)
+//                .addAnnotatedClass(Order.class)
                 .buildSessionFactory();
-        return factory;
+
+        Session session = factory.getCurrentSession();
+        session.beginTransaction();
+        return session;
     }
 
     @Bean
