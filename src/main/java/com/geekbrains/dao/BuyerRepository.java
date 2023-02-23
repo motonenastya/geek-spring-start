@@ -15,41 +15,31 @@ import java.util.Objects;
 public class BuyerRepository {
     public List<Buyer> buyers = new ArrayList<>();
 
-    public static Session thisSession;
-
     @Autowired()
     @Qualifier("session")
     Session session;
 
     public List<Buyer> getAll(){
-        thisSession = session;
-//        thisSession.beginTransaction();
-        buyers = thisSession.createQuery("from Buyer").getResultList();
+        buyers = session.createQuery("from Buyer").getResultList();
         return buyers;
     }
 
     public Buyer findById(Long id){
-        thisSession = session;
-//        thisSession.beginTransaction();
-        buyers = thisSession.createQuery("from Buyer where id = " + id.intValue()).getResultList();
+        buyers = session.createQuery("from Buyer where id = " + id.intValue()).getResultList();
         for (Buyer buyer: buyers)
             return buyer;
         return null;
     }
 
     public void create(Buyer buyer){
-        thisSession = session;
-//        thisSession.beginTransaction();
         buyers.add(buyer);
-        thisSession.save(buyer);
-        thisSession.getTransaction().commit();
+        session.save(buyer);
+        session.getTransaction().commit();
     }
 
     public void deleteById(Long id) {
-        thisSession = session;
-//        thisSession.beginTransaction();
         buyers.removeIf(p -> Objects.equals(p.getId(), id));
-        thisSession.createQuery("delete from Buyer where id = " + id.intValue()).executeUpdate();
-        thisSession.getTransaction().commit();
+        session.createQuery("delete from Buyer where id = " + id.intValue()).executeUpdate();
+        session.getTransaction().commit();
     }
 }

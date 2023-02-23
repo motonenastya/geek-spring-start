@@ -13,23 +13,19 @@ import java.util.List;
 @Repository
 public class OrderRepository {
     public static List<Order> listOrder = new ArrayList<>();
-    public static Session thisSession;
+
 
     @Autowired()
     @Qualifier("session")
     Session session;
 
     public List<Order> findAll(){
-        thisSession = session;
-        thisSession.beginTransaction();
-        listOrder = thisSession.createQuery("from Order").getResultList();
+        listOrder = session.createQuery("from Order").getResultList();
         return listOrder;
     }
 
     public List<Order> findById(Long buyerId){
-        thisSession = session;
-        thisSession.beginTransaction();
-        listOrder = thisSession.createQuery("from Order where buyer_id = " + buyerId.intValue()).getResultList();
+        listOrder = session.createQuery("from Order where buyer_id = " + buyerId.intValue()).getResultList();
         return listOrder;
     }
 }

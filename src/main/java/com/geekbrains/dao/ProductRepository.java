@@ -15,21 +15,18 @@ import java.util.Objects;
 public class ProductRepository {
     public List<Product> products = new ArrayList<>();
 
-    public static Session thisSession;
 
     @Autowired()
     @Qualifier("session")
     Session session;
 
     public List<Product> getAll(){
-        thisSession = session;
-        products = thisSession.createQuery("from Product").getResultList();
+        products = session.createQuery("from Product").getResultList();
         return products;
     }
 
     public Product findById(Long id){
-        thisSession = session;
-        products = thisSession.createQuery("from Product where id = " + id.intValue()).getResultList();
+        products = session.createQuery("from Product where id = " + id.intValue()).getResultList();
         for (Product product: products)
             return product;
         return null;
@@ -38,16 +35,14 @@ public class ProductRepository {
     }
 
     public void create(Product product){
-        thisSession = session;
         products.add(product);
-        thisSession.save(product);
-        thisSession.getTransaction().commit();
+        session.save(product);
+        session.getTransaction().commit();
     }
 
     public void deleteById(Long id) {
-        thisSession = session;
         products.removeIf(p -> Objects.equals(p.getId(), id));
-        thisSession.createQuery("delete from Product where id = " + id.intValue()).executeUpdate();
-        thisSession.getTransaction().commit();
+        session.createQuery("delete from Product where id = " + id.intValue()).executeUpdate();
+        session.getTransaction().commit();
     }
 }
