@@ -1,9 +1,6 @@
 package com.geekbrains.models;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 @Entity
 @Table(name = "orders")

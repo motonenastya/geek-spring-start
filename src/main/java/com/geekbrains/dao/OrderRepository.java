@@ -2,7 +2,6 @@ package com.geekbrains.dao;
 
 import com.geekbrains.models.Order;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
@@ -13,7 +12,6 @@ import java.util.List;
 @Repository
 public class OrderRepository {
     public static List<Order> listOrder = new ArrayList<>();
-
 
     @Autowired()
     @Qualifier("session")

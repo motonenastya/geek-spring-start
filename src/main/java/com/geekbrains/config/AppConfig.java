@@ -1,6 +1,5 @@
 package com.geekbrains.config;
 
-//import com.geekbrains.models.Order;
 import com.geekbrains.models.Buyer;
 import com.geekbrains.models.Product;
 import org.hibernate.Session;
